@@ -11,11 +11,11 @@ const ReactionSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      minlength: 1,
-      maxlength: 280
+      minLength: 1,
+      maxLength: 280
     },
     username:{
-      ype: String,
+      type: String,
       required: true
     },
     createdAt: {
@@ -31,7 +31,7 @@ const ReactionSchema = new Schema(
   }
 )
 
-const Thoughtschema = new Schema(
+const ThoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -59,10 +59,10 @@ const Thoughtschema = new Schema(
   }
 );
 
-Thoughtchema.virtual('reactionCount').get(function() {
+ThoughtSchema.virtual('reactionCount').get(function() {
   return this.reaction.maxlength;
 });
 
-const Thought = model('Thought', ThoughtSchema)
+const Thought = model('Thought', ThoughtSchema);
 
-module.exports = Thought
+module.exports = Thought;

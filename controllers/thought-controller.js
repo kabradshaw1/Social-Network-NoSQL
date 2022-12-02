@@ -1,6 +1,9 @@
 const { Thought, User } = require('../models');
 
 const thoughtController = {
+  getAllThought(req, res) {
+    Thought.find({})
+  },
   // add Thought to User
   addThought({ params, body }, res) {
     console.log(body);

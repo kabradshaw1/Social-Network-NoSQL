@@ -8,16 +8,15 @@ const UserScehma = new Schema(
       required: true,
       trim: true
     },
-    email: {
-      type: String,
+    email: {      type: String,      
+      required: true,  
       unique: true,
-      required: true, 
-      validate: [validateEmail, 'Please fill a valid email address'],
+      match: [/.+@.+\..+/, 'Must match an email address!'],    
     },
-    thoughts: [
+    thought: [
       {
       type: Schema.Types.ObjectId,
-      ref: 'Thoughts'
+      ref: 'Thought'
       }
     ],
     friends: [
