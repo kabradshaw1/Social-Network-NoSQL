@@ -2,7 +2,7 @@ const router = require('express').Router();
 const {
   getAllThought,
   getThoughtById,
-  addThought,
+  addThought, //don't forget to push the created thought's _id to the associated user's thoughts array field 
   updateThought,
   removeThought,
   addReaction,
@@ -22,7 +22,10 @@ router
   .put(updateThought)
   .delete(removeThought);
 
-// /api/thoughts/<userId>/<thoughtId>/<reactionId>
-router.route(':userId/:thoughtId/:reactionId').delete(removeReaction);
+
+// /api/thoughts/<thoughtId>/reactions
+router.route('thoughts/:thoughtId/reactions')
+.delete(removeReaction)
+.post(addReaction);
 
 module.exports = router;
