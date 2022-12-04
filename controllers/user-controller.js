@@ -14,10 +14,7 @@ const userControllers = {
   // get one User by id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
-      .populate({
-        path: 'thoughts',
-        select: '-__v'
-      })
+      .populate("thoughts")
       .populate("friends")
       .select('-__v')
       .then(dbUserData => res.json(dbUserData))
@@ -28,10 +25,15 @@ const userControllers = {
   },
 
   // createUser
-  createUser({ body }, res) {
-    User.create(body)
-      .then(dbUserData => res.json(dbUserData))
-      .catch(err => res.json(err));
+  createUser(req, res) {
+    User.create(req.body)
+      .then((dbUserData) => {
+        res.json(dbUserData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 
   // update User by id
